@@ -1,12 +1,22 @@
-def count_candy_sets(N):
-    count = 0
-    i = 1
-    while i*(i+1)//2 < N:
-        if (N - i*(i+1)//2) % i == 0:
-            count += 1
-        i += 2
-    return count
+n=int(input())
 
-# Example usage:
-N = 15
-print(count_candy_sets(N))  # Output: 3
+from functools import reduce
+
+
+ 
+
+def factors(n):
+
+    return list(reduce(list.__add__, ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+
+k=factors(n)
+
+count=0
+
+for a in list(range(len(k)-1))[::2]:
+
+    if (k[a]+k[a+1])%2==0:
+
+        count=count+1
+
+print(count)

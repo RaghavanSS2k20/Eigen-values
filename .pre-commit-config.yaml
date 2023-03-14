@@ -1,0 +1,8 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: my-project-pre-commit-hook
+        name: Check commit message length
+        entry: bash -c 'commit_msg=$(cat $1) && num_words=$(echo $commit_msg | wc -w) && [[ $num_words -ge 2 && $num_words -le 5 ]] || { echo "Commit message should have between 2 and 5 words"; exit 1; }'
+        language: system
+        files: ^(.git/COMMIT_EDITMSG|.*\.git/COMMIT_EDITMSG)$
